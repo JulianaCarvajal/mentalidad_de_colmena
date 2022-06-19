@@ -26,7 +26,7 @@ def family_members(line):
     return sent
 
 def fill_form(line):
-    """Ask for the information and write it in the new file
+    """Ask for the information and store it
 
     Args:
         line (str): Current line in the file
