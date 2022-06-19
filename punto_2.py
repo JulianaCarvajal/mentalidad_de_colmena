@@ -16,5 +16,84 @@ Por ejemplo, si el mensaje es: “Llamar después de las 9:54 al teléfono 31223
 el mensaje codificado sería: “Llamar después de la 1:06 al teléfono 7988760434”.
 Lo que debes haces es implementar una función que codifique y otra que decodifique
 mensajes utilizando la estrategia Saltando al 5. Así que muestra un menú con las opciones.
-
 """
+
+def codify(message):
+    """Codify the message
+
+    Args:
+        message (str): Message to be codified
+
+    Returns:
+        str: Codified message
+    """
+    # Create a list with the numbers to be codified:
+    numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+    # Create a list with the codified numbers:
+    new_numbers = ['9', '8', '7', '6', '0', '4', '3', '2', '1', '5']
+    codified_message = ''
+    for letter in message:
+        # Check if the letter is a number:
+        if letter in numbers:
+            # Get the index of the number:
+            index = numbers.index(letter)
+            # Add the codified number:
+            codified_message += new_numbers[index]
+        else:
+            # If the letter is not a number, add it to the new message:
+            codified_message += letter
+    return codified_message
+
+def decodify(message):
+    """Decodify the message
+
+    Args:
+        message (str): Message to be decodified
+
+    Returns:
+        str: Decodified message
+    """
+    # Create a list with the numbers to be decodified:
+    codified_numbers = ['9', '8', '7', '6', '0', '4', '3', '2', '1', '5']
+    # Create a list with the decodified numbers:
+    decodified_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+    decodified_message = ''
+    for letter in message:
+        # Check if the letter is a number:
+        if letter in codified_numbers:
+            # Get the index of the number:
+            index = codified_numbers.index(letter)
+            # Add the decodified number:
+            decodified_message += decodified_numbers[index]
+        else:
+            # If the letter is not a number, add it to the decodified message:
+            decodified_message += letter
+    return decodified_message
+
+def menu():
+    """Show the menu
+
+    Returns:
+        str: Menu
+    """
+    print('1. Codify a message')
+    print('2. Decodify a message')
+    print('3. Exit')
+    return input('Enter your choice: ')
+
+def main():
+    """Main function"""
+    while True:
+        choice = menu()
+        if choice == '1':
+            message = input('Enter your message: ')
+            print('Codified message: ' + codify(message))
+        elif choice == '2':
+            message = input('Enter your message: ')
+            print('Decodified message: ' + decodify(message))
+        elif choice == '3':
+            break
+        else:
+            print('Invalid choice')
+
+main()
